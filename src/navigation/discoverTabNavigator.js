@@ -56,6 +56,7 @@ const TabNav = () => {
             if (route.name === screenNames.DIRECTION) {
               return (
                 <View
+                  // eslint-disable-next-line react-native/no-inline-styles
                   style={{
                     borderRadius: 35,
                     width: 70,

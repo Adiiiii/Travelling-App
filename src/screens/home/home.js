@@ -22,7 +22,7 @@ const Home = ({ navigation }) => {
           <NavLogo style={styles.logo} />
         </SafeAreaView>
         <View>
-          <View style={{ paddingHorizontal: 20 }}>
+          <View style={styles.content}>
             <View>
               <Text style={styles.heading}>
                 We know that you wanna travel and travel !

@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
   logo: {
     alignSelf: 'center',
   },
+  content: {
+    paddingHorizontal: 20,
+  },
   text: {
     color: 'grey',
     fontSize: 30,
