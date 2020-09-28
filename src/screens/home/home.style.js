@@ -1,5 +1,5 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { JUSTBLACK, PUREWHITE, THEMECOLOR } from '../../constants/colors';
+import { StyleSheet, Platform } from 'react-native';
+import { PUREWHITE, THEMECOLOR } from '../../constants/colors';
 const fontfamily = Platform.OS === 'ios' ? 'Verdana' : 'Roboto';
 
 const styles = StyleSheet.create({

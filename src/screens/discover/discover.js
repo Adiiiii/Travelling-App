@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, ScrollView, Image } from 'react-native';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import styles from './discover.style';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -7,9 +7,6 @@ import FastImage from 'react-native-fast-image';
 
 // data
 import data from '../../data';
-
-// assets
-import { walk } from '../../assets/index';
 
 const Discover = ({ navigation }) => {
   const [categoryIndex, setCategoryIndex] = useState(0);

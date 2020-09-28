@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
-  Dimensions,
   SafeAreaView,
   View,
   Text,
@@ -12,7 +11,7 @@ import {
 import styles from './home.style';
 
 // assets if any
-import { home, home2, NavLogo } from '../../assets/index';
+import { home2, NavLogo } from '../../assets/index';
 import screenNames from '../../constants/screenNames';
 
 const Home = ({ navigation }) => {
@@ -29,7 +28,7 @@ const Home = ({ navigation }) => {
                 We know that you wanna travel and travel !
               </Text>
               <Text style={styles.subheading}>
-                just leave it yo us and we will make your travelling life easier
+                just leave it to us and we will make your travelling life easier
                 and affordable. yes you need to worry about nothing
               </Text>
             </View>

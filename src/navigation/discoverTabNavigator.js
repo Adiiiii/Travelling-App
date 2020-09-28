@@ -2,7 +2,6 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 
 // Assets
 import Ionicons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -10,7 +9,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 // Constants
-import { PUREWHITE, JUSTBLACK } from '../constants/colors';
+import { PUREWHITE } from '../constants/colors';
 import screenNames from '../constants/screenNames';
 
 // Screens
@@ -41,14 +40,6 @@ const iconNames = {
 };
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-const getStyle = (name) =>
-  name === screenNames.DIRECTION
-    ? {
-        marginBottom: 20,
-        borderWidth: 2,
-      }
-    : {};
 
 const TabNav = () => {
   return (
@@ -62,7 +53,7 @@ const TabNav = () => {
               ? iconNames[route.name].focused
               : iconNames[route.name].default;
             // You can return any component that you like here!
-            if (route.name == screenNames.DIRECTION) {
+            if (route.name === screenNames.DIRECTION) {
               return (
                 <View
                   style={{

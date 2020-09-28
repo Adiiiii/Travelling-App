@@ -1,11 +1,5 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import {
-  JUSTBLACK,
-  PUREWHITE,
-  THEMECOLOR,
-  BESTGRAY,
-} from '../../constants/colors';
-const fontfamily = Platform.OS === 'ios' ? 'Verdana' : 'Roboto';
+import { StyleSheet } from 'react-native';
+import { PUREWHITE, THEMECOLOR, BESTGRAY } from '../../constants/colors';
 
 const styles = StyleSheet.create({
   screenWrapper: {
