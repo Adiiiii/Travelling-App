@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, Text, SafeAreaView, ScrollView, Alert } from 'react-native';
+import { View, SafeAreaView, ScrollView, Alert } from 'react-native';
 import LottieView from 'lottie-react-native';
 
 const ComingSoon = () => {
