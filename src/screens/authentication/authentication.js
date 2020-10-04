@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import {
-  SafeAreaView,
   View,
   Text,
   ImageBackground,
@@ -14,7 +13,7 @@ import SlIcons from 'react-native-vector-icons/SimpleLineIcons';
 import styles from './authentication.style';
 
 // assets if any
-import { home2, NavLogo } from '../../assets/index';
+import { home2 } from '../../assets/index';
 import screenNames from '../../constants/screenNames';
 import { THEMECOLOR, DULLBLACK } from '../../constants/colors';
 

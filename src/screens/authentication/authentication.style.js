@@ -2,7 +2,6 @@ import { StyleSheet, Platform } from 'react-native';
 import {
   PUREWHITE,
   THEMECOLOR,
-  JUSTBLACK,
   MEDIUMGRAY,
   DULLBLACK,
 } from '../../constants/colors';
