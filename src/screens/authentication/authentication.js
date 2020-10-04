@@ -6,6 +6,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FaIcons from 'react-native-vector-icons/Feather';
@@ -21,6 +22,9 @@ import { THEMECOLOR, DULLBLACK } from '../../constants/colors';
 
 const Authentication = ({ navigation }) => {
   const [isLoginScreen, setIsLoginScreen] = React.useState(false);
+  const [userName, setUserName] = React.useState('');
+  const [email, setEmail] = React.useState(false);
+  const [password, setPassword] = React.useState(false);
   const buttonLabel = isLoginScreen ? 'Login' : 'Signup';
   const authMessage = isLoginScreen ? (
     <Text style={styles.loginMessage}>
@@ -40,12 +44,31 @@ const Authentication = ({ navigation }) => {
     </Text>
   );
 
+  const handleUserName = (username) => {
+    console.warn('Username is', username);
+    setUserName(username);
+  };
+
+  const handleEmail = (Email) => {
+    console.warn('email is', Email);
+    setEmail(Email);
+  };
+  const handlePassword = (pass) => {
+    console.warn('pass is', pass);
+    setPassword(pass);
+  };
+
   const handleLogin = () => {
     navigation.navigate(screenNames.TAB);
   };
 
   const handleRegistration = () => {
     console.log('WIP');
+    if (email && password && userName) {
+      console.warn('WIP');
+    } else {
+      Alert.alert('Fill the form up buddy');
+    }
   };
 
   const handleAuth = () => {
@@ -88,7 +111,11 @@ const Authentication = ({ navigation }) => {
                         size={20}
                         textContentType="email"
                       />
-                      <TextInput multiline={false} style={styles.textInput} />
+                      <TextInput
+                        multiline={false}
+                        style={styles.textInput}
+                        onBlur={(event) => handleEmail(event.nativeEvent.text)}
+                      />
                     </View>
                   </View>
                 )}
@@ -101,6 +128,7 @@ const Authentication = ({ navigation }) => {
                     <TextInput
                       multiline={false}
                       style={styles.textInput}
+                      onBlur={(event) => handleUserName(event.nativeEvent.text)}
                       textContentType="username"
                     />
                   </View>
@@ -119,6 +147,7 @@ const Authentication = ({ navigation }) => {
                       multiline={false}
                       style={styles.textInput}
                       textContentType="password"
+                      onBlur={(event) => handlePassword(event.nativeEvent.text)}
                     />
                   </View>
                 </View>
