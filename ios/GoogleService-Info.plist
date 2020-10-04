@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>447532044562-2vbuc7ne6kbob9ch80d1p2t693ld56im.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.447532044562-2vbuc7ne6kbob9ch80d1p2t693ld56im</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBxgNm-AiCT6JSbQyQX_dKd1W6H89ZIlco</string>
+	<key>GCM_SENDER_ID</key>
+	<string>447532044562</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.okayishDev.traveller</string>
+	<key>PROJECT_ID</key>
+	<string>travellerend</string>
+	<key>STORAGE_BUCKET</key>
+	<string>travellerend.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:447532044562:ios:c7ee23dfef892a086ee3cb</string>
+	<key>DATABASE_URL</key>
+	<string>https://travellerend.firebaseio.com</string>
+</dict>
+</plist>
