@@ -1,5 +1,6 @@
 const screenNames = {
   HOME: 'Home',
+  AUTHENTICATION: 'Authentication',
   DISCOVER: 'Discover',
   TAB: 'Tab',
   COMINGSOON: 'ComingSoon',
