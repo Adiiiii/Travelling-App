@@ -10,6 +10,8 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FaIcons from 'react-native-vector-icons/Feather';
 import SlIcons from 'react-native-vector-icons/SimpleLineIcons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 import styles from './authentication.style';
 
 // assets if any
@@ -58,65 +60,70 @@ const Authentication = ({ navigation }) => {
       <ImageBackground blurRadius={3} source={home2} style={styles.image}>
         <View>
           <View style={styles.content}>
-            <View style={styles.greeting}>
-              <View style={styles.greetingText}>
-                <Text style={styles.heading}>
-                  {isLoginScreen ? 'Hello' : 'Hey there'}
-                </Text>
-                <Text style={styles.heading}>
-                  {isLoginScreen ? 'Traveller' : 'Lets Sign you up!'}
-                </Text>
+            <KeyboardAwareScrollView
+              extraScrollHeight={-80}
+              keyboardShouldPersistTaps="always">
+              <View style={styles.greeting}>
+                <View style={styles.greetingText}>
+                  <Text style={styles.heading}>
+                    {isLoginScreen ? 'Hello' : 'Hey there'}
+                  </Text>
+                  <Text style={styles.heading}>
+                    {isLoginScreen ? 'Traveller' : 'Lets Sign you up!'}
+                  </Text>
+                </View>
+                <SlIcons color={THEMECOLOR} name="note" size={40} />
               </View>
-              <SlIcons color={THEMECOLOR} name="note" size={40} />
-            </View>
-            {/* SignIn/SignUp Form */}
-            <View style={styles.form}>
-              {/* Email */}
-              {!isLoginScreen && (
+              {/* SignIn/SignUp Form */}
+
+              <View style={styles.form}>
+                {/* Email */}
+                {!isLoginScreen && (
+                  <View style={styles.inputWrapper}>
+                    <Text style={styles.label}>Email</Text>
+                    <View style={styles.inputwithIcon}>
+                      <MaterialIcons
+                        color={DULLBLACK}
+                        name="email-outline"
+                        size={20}
+                        textContentType="email"
+                      />
+                      <TextInput multiline={false} style={styles.textInput} />
+                    </View>
+                  </View>
+                )}
+
+                {/* UserName */}
                 <View style={styles.inputWrapper}>
-                  <Text style={styles.label}>Email</Text>
+                  <Text style={styles.label}>Username</Text>
+                  <View style={styles.inputwithIcon}>
+                    <FaIcons color={DULLBLACK} name="user" size={20} />
+                    <TextInput
+                      multiline={false}
+                      style={styles.textInput}
+                      textContentType="username"
+                    />
+                  </View>
+                </View>
+                {/* Password */}
+                <View style={styles.inputWrapper}>
+                  <Text style={styles.label}>Password</Text>
                   <View style={styles.inputwithIcon}>
                     <MaterialIcons
                       color={DULLBLACK}
-                      name="email-outline"
+                      name="key-outline"
                       size={20}
-                      textContentType="email"
                     />
-                    <TextInput multiline={false} style={styles.textInput} />
+                    <TextInput
+                      secureTextEntry={true}
+                      multiline={false}
+                      style={styles.textInput}
+                      textContentType="password"
+                    />
                   </View>
                 </View>
-              )}
-
-              {/* UserName */}
-              <View style={styles.inputWrapper}>
-                <Text style={styles.label}>Username</Text>
-                <View style={styles.inputwithIcon}>
-                  <FaIcons color={DULLBLACK} name="user" size={20} />
-                  <TextInput
-                    multiline={false}
-                    style={styles.textInput}
-                    textContentType="username"
-                  />
-                </View>
               </View>
-              {/* Password */}
-              <View style={styles.inputWrapper}>
-                <Text style={styles.label}>Password</Text>
-                <View style={styles.inputwithIcon}>
-                  <MaterialIcons
-                    color={DULLBLACK}
-                    name="key-outline"
-                    size={20}
-                  />
-                  <TextInput
-                    secureTextEntry={true}
-                    multiline={false}
-                    style={styles.textInput}
-                    textContentType="password"
-                  />
-                </View>
-              </View>
-            </View>
+            </KeyboardAwareScrollView>
             <TouchableOpacity onPress={handleAuth}>
               <View style={styles.btns}>
                 <Text style={styles.buttonText}>{buttonLabel}</Text>
