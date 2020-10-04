@@ -34,7 +34,7 @@ const Home = ({ navigation }) => {
             </View>
           </View>
           <TouchableOpacity
-            onPress={() => navigation.navigate(screenNames.TAB)}>
+            onPress={() => navigation.navigate(screenNames.AUTHENTICATION)}>
             <View style={styles.btns}>
               <Text style={styles.buttonText}>Get Started</Text>
             </View>
