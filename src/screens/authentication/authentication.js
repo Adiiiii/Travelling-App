@@ -60,7 +60,27 @@ const Authentication = ({ navigation }) => {
   };
 
   const handleLogin = () => {
-    navigation.navigate(screenNames.TAB);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((response) => {
+        const uid = response.user.uid;
+        const usersRef = firebase.firestore().collection('users');
+        usersRef
+          .doc(uid)
+          .get()
+          .then((firestoreDocument) => {
+            if (firestoreDocument.exists) {
+              const user = firestoreDocument.data();
+              console.log('userData', user);
+              navigation.navigate(screenNames.TAB);
+            } else {
+              Alert.alert('User does not exist anymore.');
+            }
+          })
+          .catch((error) => Alert.alert('error fetching user', error));
+      })
+      .catch((error) => Alert.alert('error logging in', error));
   };
 
   const handleRegistration = () => {
@@ -121,38 +141,39 @@ const Authentication = ({ navigation }) => {
 
               <View style={styles.form}>
                 {/* Email */}
+                <View style={styles.inputWrapper}>
+                  <Text style={styles.label}>Email</Text>
+                  <View style={styles.inputwithIcon}>
+                    <MaterialIcons
+                      color={DULLBLACK}
+                      name="email-outline"
+                      size={20}
+                      textContentType="email"
+                    />
+                    <TextInput
+                      multiline={false}
+                      style={styles.textInput}
+                      onBlur={(event) => handleEmail(event.nativeEvent.text)}
+                    />
+                  </View>
+                </View>
+                {/* UserName */}
                 {!isLoginScreen && (
                   <View style={styles.inputWrapper}>
-                    <Text style={styles.label}>Email</Text>
+                    <Text style={styles.label}>Username</Text>
                     <View style={styles.inputwithIcon}>
-                      <MaterialIcons
-                        color={DULLBLACK}
-                        name="email-outline"
-                        size={20}
-                        textContentType="email"
-                      />
+                      <FaIcons color={DULLBLACK} name="user" size={20} />
                       <TextInput
                         multiline={false}
                         style={styles.textInput}
-                        onBlur={(event) => handleEmail(event.nativeEvent.text)}
+                        onBlur={(event) =>
+                          handleUserName(event.nativeEvent.text)
+                        }
+                        textContentType="username"
                       />
                     </View>
                   </View>
                 )}
-
-                {/* UserName */}
-                <View style={styles.inputWrapper}>
-                  <Text style={styles.label}>Username</Text>
-                  <View style={styles.inputwithIcon}>
-                    <FaIcons color={DULLBLACK} name="user" size={20} />
-                    <TextInput
-                      multiline={false}
-                      style={styles.textInput}
-                      onBlur={(event) => handleUserName(event.nativeEvent.text)}
-                      textContentType="username"
-                    />
-                  </View>
-                </View>
                 {/* Password */}
                 <View style={styles.inputWrapper}>
                   <Text style={styles.label}>Password</Text>
