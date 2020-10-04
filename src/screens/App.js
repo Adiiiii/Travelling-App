@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import screenNames from '../constants/screenNames';
 import TabNav from '../navigation/discoverTabNavigator';
 import { decode, encode } from 'base-64';
+import Authentication from './authentication/authentication';
 if (!global.btoa) {
   global.btoa = encode;
 }
@@ -18,6 +19,10 @@ const App = () => (
   <NavigationContainer>
     <Stack.Navigator headerMode="none">
       <Stack.Screen name={screenNames.HOME} component={Home} />
+      <Stack.Screen
+        name={screenNames.AUTHENTICATION}
+        component={Authentication}
+      />
       <Stack.Screen
         name={screenNames.TAB}
         component={TabNav}
