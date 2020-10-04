@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import { firebase } from '../../firebase/config';
 import {
   View,
   Text,
@@ -63,9 +64,28 @@ const Authentication = ({ navigation }) => {
   };
 
   const handleRegistration = () => {
-    console.log('WIP');
     if (email && password && userName) {
-      console.warn('WIP');
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((resp) => {
+          const uid = resp.user.uid;
+          const data = {
+            id: uid,
+            email,
+            userName,
+          };
+          const usersRef = firebase.firestore().collection('users');
+          usersRef
+            .doc(uid)
+            .set(data)
+            .then(() => {
+              Alert.alert('Registration Success!');
+              setIsLoginScreen(true);
+            })
+            .catch((err) => console.warn('Error creating user ', err));
+        })
+        .catch((err) => console.warn('Error signing up ', err));
     } else {
       Alert.alert('Fill the form up buddy');
     }
