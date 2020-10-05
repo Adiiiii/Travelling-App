@@ -15,7 +15,7 @@ import screenNames from '../constants/screenNames';
 // Screens
 import Discover from '../screens/discover/discover';
 import ComingSoon from '../screens/comingSoon/comingSoon';
-
+import Profile from '../screens/profile/profile';
 const iconNames = {
   [screenNames.DISCOVER]: {
     focused: 'home',
@@ -94,7 +94,7 @@ const TabNav = () => {
       <Tab.Screen name={screenNames.NOTIFICATION} component={ComingSoon} />
       <Tab.Screen name={screenNames.DIRECTION} component={ComingSoon} />
       <Tab.Screen name={screenNames.BOOKMARK} component={ComingSoon} />
-      <Tab.Screen name={screenNames.PROFILE} component={ComingSoon} />
+      <Tab.Screen name={screenNames.PROFILE} component={Profile} />
     </Tab.Navigator>
   );
 };
