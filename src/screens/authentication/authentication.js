@@ -57,6 +57,10 @@ const Authentication = ({ navigation }) => {
   };
 
   const handleLogin = () => {
+    if (!(email && password)) {
+      Alert.alert('you missed the mandatory fields !');
+      return;
+    }
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
