@@ -7,6 +7,7 @@ import FastImage from 'react-native-fast-image';
 
 // data
 import data from '../../data';
+import screenNames from '../../constants/screenNames';
 
 const Discover = ({ navigation }) => {
   const [categoryIndex, setCategoryIndex] = useState(0);
@@ -33,7 +34,11 @@ const Discover = ({ navigation }) => {
             size={30}
             onPress={() => navigation.navigate('Home')}
           />
-          <MaterialIcons name="face-profile" size={30} />
+          <MaterialIcons
+            onPress={() => navigation.navigate(screenNames.PROFILE)}
+            name="face-profile"
+            size={30}
+          />
         </View>
       </SafeAreaView>
 
