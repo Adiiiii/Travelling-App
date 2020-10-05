@@ -26,6 +26,7 @@ const Authentication = ({ navigation }) => {
   const [userName, setUserName] = React.useState('');
   const [email, setEmail] = React.useState(false);
   const [password, setPassword] = React.useState(false);
+  const [focusedInput, SetFocusedInput] = React.useState('');
   const buttonLabel = isLoginScreen ? 'Login' : 'Signup';
   const authMessage = isLoginScreen ? (
     <Text style={styles.loginMessage}>
@@ -146,7 +147,7 @@ const Authentication = ({ navigation }) => {
                   <Text style={styles.label}>Email</Text>
                   <View style={styles.inputwithIcon}>
                     <MaterialIcons
-                      color={DULLBLACK}
+                      color={focusedInput === 'email' ? THEMECOLOR : DULLBLACK}
                       name="email-outline"
                       size={20}
                       textContentType="email"
@@ -155,6 +156,7 @@ const Authentication = ({ navigation }) => {
                       multiline={false}
                       style={styles.textInput}
                       onBlur={(event) => handleEmail(event.nativeEvent.text)}
+                      onFocus={() => SetFocusedInput('email')}
                     />
                   </View>
                 </View>
@@ -163,13 +165,20 @@ const Authentication = ({ navigation }) => {
                   <View style={styles.inputWrapper}>
                     <Text style={styles.label}>Username</Text>
                     <View style={styles.inputwithIcon}>
-                      <FaIcons color={DULLBLACK} name="user" size={20} />
+                      <FaIcons
+                        color={
+                          focusedInput === 'username' ? THEMECOLOR : DULLBLACK
+                        }
+                        name="user"
+                        size={20}
+                      />
                       <TextInput
                         multiline={false}
                         style={styles.textInput}
                         onBlur={(event) =>
                           handleUserName(event.nativeEvent.text)
                         }
+                        onFocus={() => SetFocusedInput('username')}
                         textContentType="username"
                       />
                     </View>
@@ -180,7 +189,9 @@ const Authentication = ({ navigation }) => {
                   <Text style={styles.label}>Password</Text>
                   <View style={styles.inputwithIcon}>
                     <MaterialIcons
-                      color={DULLBLACK}
+                      color={
+                        focusedInput === 'password' ? THEMECOLOR : DULLBLACK
+                      }
                       name="key-outline"
                       size={20}
                     />
@@ -190,6 +201,7 @@ const Authentication = ({ navigation }) => {
                       style={styles.textInput}
                       textContentType="password"
                       onBlur={(event) => handlePassword(event.nativeEvent.text)}
+                      onFocus={() => SetFocusedInput('password')}
                     />
                   </View>
                 </View>
