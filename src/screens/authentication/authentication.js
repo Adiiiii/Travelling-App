@@ -46,16 +46,13 @@ const Authentication = ({ navigation }) => {
   );
 
   const handleUserName = (username) => {
-    console.warn('Username is', username);
     setUserName(username);
   };
 
   const handleEmail = (Email) => {
-    console.warn('email is', Email);
     setEmail(Email);
   };
   const handlePassword = (pass) => {
-    console.warn('pass is', pass);
     setPassword(pass);
   };
 
