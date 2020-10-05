@@ -42,7 +42,7 @@ const Profile = ({ navigation }) => {
             onPress={() => logMeOut()}
           />
 
-          <Text style={styles.username}>{user.email}</Text>
+          <Text style={styles.username}>{user?.email || ''}</Text>
         </View>
       </Gradient>
     </>
