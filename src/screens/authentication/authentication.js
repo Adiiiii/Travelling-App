@@ -13,8 +13,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FaIcons from 'react-native-vector-icons/Feather';
 import SlIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Loader from '../../components/loader/loader';
 import styles from './authentication.style';
+import Loader from '../../components/loader/loader';
 
 // assets if any
 import { home2 } from '../../assets/index';
