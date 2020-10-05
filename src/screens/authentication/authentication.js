@@ -46,15 +46,21 @@ const Authentication = ({ navigation }) => {
     </Text>
   );
 
-  const handleUserName = (username) => {
-    setUserName(username);
-  };
-
-  const handleEmail = (Email) => {
-    setEmail(Email);
-  };
-  const handlePassword = (pass) => {
-    setPassword(pass);
+  const handleOnBlur = (target, value) => {
+    SetFocusedInput('');
+    switch (target) {
+      case 'username':
+        setUserName(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'password':
+        setPassword(value);
+        break;
+      default:
+        console.log('Woooo ! this should not have been possible!!');
+    }
   };
 
   const handleLogin = () => {
@@ -155,7 +161,9 @@ const Authentication = ({ navigation }) => {
                     <TextInput
                       multiline={false}
                       style={styles.textInput}
-                      onBlur={(event) => handleEmail(event.nativeEvent.text)}
+                      onBlur={(event) =>
+                        handleOnBlur('email', event.nativeEvent.text)
+                      }
                       onFocus={() => SetFocusedInput('email')}
                     />
                   </View>
@@ -175,9 +183,9 @@ const Authentication = ({ navigation }) => {
                       <TextInput
                         multiline={false}
                         style={styles.textInput}
-                        onBlur={(event) =>
-                          handleUserName(event.nativeEvent.text)
-                        }
+                        onBlur={(event) => {
+                          handleOnBlur('username', event.nativeEvent.text);
+                        }}
                         onFocus={() => SetFocusedInput('username')}
                         textContentType="username"
                       />
@@ -200,7 +208,9 @@ const Authentication = ({ navigation }) => {
                       multiline={false}
                       style={styles.textInput}
                       textContentType="password"
-                      onBlur={(event) => handlePassword(event.nativeEvent.text)}
+                      onBlur={(event) =>
+                        handleOnBlur('password', event.nativeEvent.text)
+                      }
                       onFocus={() => SetFocusedInput('password')}
                     />
                   </View>
