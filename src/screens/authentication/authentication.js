@@ -13,7 +13,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FaIcons from 'react-native-vector-icons/Feather';
 import SlIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
+import Loader from '../../components/loader/loader';
 import styles from './authentication.style';
 
 // assets if any
@@ -28,6 +28,7 @@ const Authentication = ({ navigation }) => {
   const [password, setPassword] = React.useState(false);
   const [focusedInput, SetFocusedInput] = React.useState('');
   const buttonLabel = isLoginScreen ? 'Login' : 'Signup';
+  const [isloaderVisible, setIsLoaderVisible] = React.useState(false);
   const authMessage = isLoginScreen ? (
     <Text style={styles.loginMessage}>
       {'Already Registered? Tap '}
@@ -68,6 +69,7 @@ const Authentication = ({ navigation }) => {
       Alert.alert('you missed the mandatory fields !');
       return;
     }
+    setIsLoaderVisible(true);
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -88,11 +90,13 @@ const Authentication = ({ navigation }) => {
           })
           .catch((error) => Alert.alert('error fetching user', error));
       })
-      .catch((error) => Alert.alert('error logging in', error));
+      .catch((error) => Alert.alert('error logging in', error))
+      .finally(() => setIsLoaderVisible(false));
   };
 
   const handleRegistration = () => {
     if (email && password && userName) {
+      setIsLoaderVisible(true);
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
@@ -108,12 +112,12 @@ const Authentication = ({ navigation }) => {
             .doc(uid)
             .set(data)
             .then(() => {
-              Alert.alert('Registration Success!');
               setIsLoginScreen(true);
             })
             .catch((err) => console.warn('Error creating user ', err));
         })
-        .catch((err) => console.warn('Error signing up ', err));
+        .catch((err) => console.warn('Error signing up ', err))
+        .finally(() => setIsLoaderVisible(false));
     } else {
       Alert.alert('Fill the form up buddy');
     }
@@ -128,6 +132,7 @@ const Authentication = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
+      <Loader visible={isloaderVisible} message="Talking to server..." />
       <ImageBackground blurRadius={3} source={home2} style={styles.image}>
         <View>
           <View style={styles.content}>
