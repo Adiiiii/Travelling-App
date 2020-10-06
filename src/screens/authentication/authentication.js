@@ -63,7 +63,6 @@ const Authentication = ({ navigation }) => {
         console.log('Woooo ! this should not have been possible!!');
     }
   };
-
   const handleLogin = () => {
     if (!(email && password)) {
       Alert.alert('you missed the mandatory fields !');
@@ -73,51 +72,29 @@ const Authentication = ({ navigation }) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        const uid = response.user.uid;
-        const usersRef = firebase.firestore().collection('users');
-        usersRef
-          .doc(uid)
-          .get()
-          .then((firestoreDocument) => {
-            if (firestoreDocument.exists) {
-              const user = firestoreDocument.data();
-              console.log('userData', user);
-              navigation.navigate(screenNames.TAB);
-            } else {
-              Alert.alert('User does not exist anymore.');
-            }
-          })
-          .catch((error) => Alert.alert('error fetching user', error));
-      })
+      .then(() => navigation.navigate(screenNames.TAB))
       .catch((error) => Alert.alert('error logging in', error))
       .finally(() => setIsLoaderVisible(false));
   };
 
-  const handleRegistration = () => {
+  const handleRegistration = async () => {
     if (email && password && userName) {
-      setIsLoaderVisible(true);
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((resp) => {
-          const uid = resp.user.uid;
-          const data = {
-            id: uid,
-            email,
-            userName,
-          };
-          const usersRef = firebase.firestore().collection('users');
-          usersRef
-            .doc(uid)
-            .set(data)
-            .then(() => {
-              setIsLoginScreen(true);
-            })
-            .catch((err) => console.warn('Error creating user ', err));
-        })
-        .catch((err) => console.warn('Error signing up ', err))
-        .finally(() => setIsLoaderVisible(false));
+      try {
+        setIsLoaderVisible(true);
+        const response = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password);
+        const user = response.user;
+        // @todo : check if firesbase allows this in one api call
+        await user.updateProfile({
+          displayName: userName,
+        });
+        setIsLoginScreen(true);
+      } catch (err) {
+        console.warn('Error while registration, ', err);
+      } finally {
+        setIsLoaderVisible(false);
+      }
     } else {
       Alert.alert('Fill the form up buddy');
     }
