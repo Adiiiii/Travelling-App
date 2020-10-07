@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { firebase } from '../../firebase/config';
+
 import {
   View,
   Text,
@@ -10,6 +11,8 @@ import {
   Alert,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons2 from 'react-native-vector-icons/MaterialIcons';
+import ImagePicker from 'react-native-image-picker';
 import FaIcons from 'react-native-vector-icons/Feather';
 import SlIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -29,6 +32,7 @@ const Authentication = ({ navigation }) => {
   const [focusedInput, SetFocusedInput] = React.useState('');
   const buttonLabel = isLoginScreen ? 'Login' : 'Signup';
   const [isloaderVisible, setIsLoaderVisible] = React.useState(false);
+  const [image, setImage] = React.useState();
   const authMessage = isLoginScreen ? (
     <Text style={styles.loginMessage}>
       {'Already Registered? Tap '}
@@ -47,6 +51,21 @@ const Authentication = ({ navigation }) => {
     </Text>
   );
 
+  const selectImage = () => {
+    ImagePicker.showImagePicker({}, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        Alert.alert('Image Picked');
+        setImage(response.data);
+        // Create a root reference
+      }
+    });
+  };
   const handleOnBlur = (target, value) => {
     SetFocusedInput('');
     switch (target) {
@@ -85,10 +104,19 @@ const Authentication = ({ navigation }) => {
           .auth()
           .createUserWithEmailAndPassword(email, password);
         const user = response.user;
-        // @todo : check if firesbase allows this in one api call
-        await user.updateProfile({
-          displayName: userName,
-        });
+        if (image) {
+          const storageRef = firebase.storage().ref();
+          const imageName = `${userName}-profile.jpg`;
+          const imageRef = storageRef.child(imageName);
+          const snapshot = await imageRef.putString(image, 'base64');
+          const photoURL = await snapshot.ref.getDownloadURL();
+          // @todo : check if firesbase allows this in one api call
+          await user.updateProfile({
+            displayName: userName,
+            photoURL,
+          });
+        }
+
         setIsLoginScreen(true);
       } catch (err) {
         console.warn('Error while registration, ', err);
@@ -125,7 +153,12 @@ const Authentication = ({ navigation }) => {
                     {isLoginScreen ? 'Traveller' : 'Lets Sign you up!'}
                   </Text>
                 </View>
-                <SlIcons color={THEMECOLOR} name="note" size={40} />
+                <MaterialIcons2
+                  color={THEMECOLOR}
+                  onPress={selectImage}
+                  name="add-a-photo"
+                  size={48}
+                />
               </View>
               {/* SignIn/SignUp Form */}
 
