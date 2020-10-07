@@ -29,11 +29,7 @@ const Discover = ({ navigation }) => {
       {/* HEADER */}
       <SafeAreaView>
         <View style={header}>
-          <MaterialIcons
-            name="menu"
-            size={30}
-            onPress={() => navigation.navigate('Home')}
-          />
+          <MaterialIcons name="menu" size={30} />
           <MaterialIcons
             onPress={() => navigation.navigate(screenNames.PROFILE)}
             name="face-profile"
