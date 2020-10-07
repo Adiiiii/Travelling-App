@@ -14,7 +14,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons2 from 'react-native-vector-icons/MaterialIcons';
 import ImagePicker from 'react-native-image-picker';
 import FaIcons from 'react-native-vector-icons/Feather';
-import SlIcons from 'react-native-vector-icons/SimpleLineIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './authentication.style';
 import Loader from '../../components/loader/loader';
