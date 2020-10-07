@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { PUREWHITE, BESTGRAY } from '../../constants/colors';
+import { PUREWHITE, BESTGRAY, DULLBLACK } from '../../constants/colors';
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
   profilePic: {
     width: 100,
     height: 100,
-    backgroundColor: BESTGRAY,
+    borderColor: BESTGRAY,
+    borderWidth: 1,
     position: 'absolute',
     left: width / 2,
     borderRadius: 20,
@@ -32,8 +33,17 @@ const styles = StyleSheet.create({
   username: {
     alignSelf: 'center',
     marginTop: 8,
-    fontSize: 20,
+    fontSize: 28,
+    fontWeight: '600',
   },
+  email: {
+    alignSelf: 'center',
+    marginTop: 4,
+    color: DULLBLACK,
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  imageWrapper: { width: '100%', height: '100%' },
   logout: { position: 'absolute', right: 24, top: 12 },
 });
 export default styles;
