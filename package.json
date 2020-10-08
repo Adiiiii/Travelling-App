@@ -49,5 +49,8 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "husky": {
+    "pre-commit": "yarn lint"
   }
 }
