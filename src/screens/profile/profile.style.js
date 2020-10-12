@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: width / 2,
     borderRadius: 20,
-    transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
+    transform: [{ translateX: -50 }, { translateY: -50 }],
   },
   backgroundGradient: { flex: 1, justifyContent: 'flex-end' },
   username: {
