@@ -175,7 +175,7 @@ const Authentication = ({ navigation }) => {
                     <TextInput
                       multiline={false}
                       style={styles.textInput}
-                      onBlur={(event) =>
+                      onEndEditing={(event) =>
                         handleOnBlur('email', event.nativeEvent.text)
                       }
                       onFocus={() => SetFocusedInput('email')}
@@ -197,7 +197,7 @@ const Authentication = ({ navigation }) => {
                       <TextInput
                         multiline={false}
                         style={styles.textInput}
-                        onBlur={(event) => {
+                        onEndEditing={(event) => {
                           handleOnBlur('username', event.nativeEvent.text);
                         }}
                         onFocus={() => SetFocusedInput('username')}
@@ -222,7 +222,7 @@ const Authentication = ({ navigation }) => {
                       multiline={false}
                       style={styles.textInput}
                       textContentType="password"
-                      onBlur={(event) =>
+                      onEndEditing={(event) =>
                         handleOnBlur('password', event.nativeEvent.text)
                       }
                       onFocus={() => SetFocusedInput('password')}
