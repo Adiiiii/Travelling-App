@@ -152,12 +152,14 @@ const Authentication = ({ navigation }) => {
                     {isLoginScreen ? 'Traveller' : 'Lets Sign you up!'}
                   </Text>
                 </View>
-                <MaterialIcons2
-                  color={THEMECOLOR}
-                  onPress={selectImage}
-                  name="add-a-photo"
-                  size={48}
-                />
+                {!isLoginScreen && (
+                  <MaterialIcons2
+                    color={THEMECOLOR}
+                    onPress={selectImage}
+                    name="add-a-photo"
+                    size={48}
+                  />
+                )}
               </View>
               {/* SignIn/SignUp Form */}
 
