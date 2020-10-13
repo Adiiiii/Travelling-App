@@ -6,7 +6,6 @@ import {
   DULLBLACK,
 } from '../../constants/colors';
 const fontfamily = Platform.OS === 'ios' ? 'Verdana' : 'Roboto';
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -69,14 +68,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fontfamily,
   },
-  textInput: { flex: 1, paddingLeft: 4 },
+  textInput: { flex: 1, paddingLeft: 4, paddingVertical: 0 },
   inputWrapper: { marginBottom: 24 },
   inputwithIcon: {
     flexDirection: 'row',
     width: '100%',
     borderColor: THEMECOLOR,
     borderBottomWidth: 1,
-    paddingBottom: 4,
+    paddingBottom: Platform.OS === 'ios' ? 2 : 0,
+    alignItems: 'center',
   },
   label: {
     color: MEDIUMGRAY,
